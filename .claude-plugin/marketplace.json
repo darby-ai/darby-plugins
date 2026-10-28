@@ -1,0 +1,14 @@
+{
+  "name": "darby-plugins",
+  "description": "Claude Code plugins for darby",
+  "owner": {
+    "name": "darby maintainers"
+  },
+  "plugins": [
+    {
+      "name": "darby",
+      "source": "./plugins/darby",
+      "description": "Connect Claude Code to the darby remote MCP server"
+    }
+  ]
+}
