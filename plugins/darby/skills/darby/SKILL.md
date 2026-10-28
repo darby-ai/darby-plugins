@@ -5,11 +5,11 @@ description: Use when the user wants to work with darby or asks for darby's tool
 
 # Using darby
 
-darby is a remote MCP server this plugin registers as the `darby` server.
+darby is a remote MCP server this plugin registers as the `darby` server (Claude Code names it `plugin:darby:darby`).
 
 ## Sign in
 
-1. Run `/mcp` in Claude Code, select `darby`, and choose to authenticate.
+1. Run `/mcp` in Claude Code, select the darby server (shown as `plugin:darby:darby`), and choose to authenticate.
 2. Finish the login in the browser window that opens.
 
 Claude Code performs the OAuth sign-in and keeps the tokens on this machine.
@@ -24,5 +24,5 @@ If a darby tool reports an authentication error, ask the user to sign in again t
 
 ## Sign out
 
-Run `/mcp`, select `darby`, and choose **Clear authentication**.
-From a shell: `claude mcp logout darby`.
+Run `/mcp`, select the darby server (shown as `plugin:darby:darby`), and choose **Clear authentication**.
+From a shell: `claude mcp logout plugin:darby:darby`.

@@ -22,7 +22,7 @@ In Claude Code:
 
    Choose a scope when prompted (user scope is the usual choice).
 
-3. Sign in: run `/mcp`, select `darby`, and authenticate in the browser.
+3. Sign in: run `/mcp`, select the darby server (shown as `plugin:darby:darby`), and authenticate in the browser.
 
 The same steps from a shell:
 
@@ -45,8 +45,8 @@ Then run `/reload-plugins` in an open session.
 
 ## Sign out
 
-Run `/mcp`, select `darby`, and choose **Clear authentication**, or run
-`claude mcp logout darby`.
+Run `/mcp`, select the darby server (shown as `plugin:darby:darby`), and choose
+**Clear authentication**, or run `claude mcp logout plugin:darby:darby`.
 
 ## Uninstall
 

@@ -11,6 +11,8 @@ from pathlib import Path
 
 _HOST = "dev." + "cole" + "range" + ".app"
 MCP_URL = "https://" + _HOST + "/mcp"
+OAUTH_CLIENT_ID = "bf-gateway-cli"
+OAUTH_CALLBACK_PORT = 33418
 ALLOWED_HOSTS = {_HOST, "code.claude.com"}
 # Forbidden words are assembled from pieces so this file does not contain them.
 FORBIDDEN = [
@@ -86,8 +88,16 @@ def check_manifests(root, errs):
             if s.get("url") != MCP_URL:
                 errs.append(f".mcp.json: darby url must be exactly {MCP_URL}")
             o = s.get("oauth")
-            if o is not None and (not isinstance(o, dict) or set(o) - {"clientId", "callbackPort"}):
-                errs.append(".mcp.json: oauth may only hold clientId and callbackPort")
+            if not isinstance(o, dict):
+                errs.append(".mcp.json: darby oauth object required")
+            else:
+                if set(o) - {"clientId", "callbackPort"}:
+                    errs.append(".mcp.json: oauth may only hold clientId and callbackPort")
+                if o.get("clientId") != OAUTH_CLIENT_ID:
+                    errs.append(f".mcp.json: oauth.clientId must be {OAUTH_CLIENT_ID!r}")
+                port = o.get("callbackPort")
+                if type(port) is not int or port != OAUTH_CALLBACK_PORT:
+                    errs.append(f".mcp.json: oauth.callbackPort must be the integer {OAUTH_CALLBACK_PORT}")
     skill = root / "plugins" / "darby" / "skills" / "darby" / "SKILL.md"
     if not skill.is_file():
         errs.append("SKILL.md missing")
@@ -98,6 +108,10 @@ def check_manifests(root, errs):
             errs.append("SKILL.md: frontmatter needs name: darby and a description")
         if "read_client_guide" not in text:
             errs.append("SKILL.md: must mention read_client_guide")
+    for doc in (root / "README.md", skill):
+        # The plugin server is registered as plugin:darby:darby; the bare name does not match.
+        if doc.is_file() and re.search(r"claude mcp logout darby(?![\w:-])", doc.read_text()):
+            errs.append(f"{doc.name}: use the scoped name plugin:darby:darby, not bare 'claude mcp logout darby'")
     for need in ("LICENSE", "README.md", "docs/SOURCES.md"):
         if not (root / need).is_file():
             errs.append(f"{need} missing")
