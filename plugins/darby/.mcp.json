@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "darby": {
+      "type": "http",
+      "url": "https://dev.colerange.app/mcp",
+      "oauth": {
+        "clientId": "bf-gateway-cli",
+        "callbackPort": 33418
+      }
+    }
+  }
+}
