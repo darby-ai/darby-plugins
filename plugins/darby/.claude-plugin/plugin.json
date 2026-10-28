@@ -1,0 +1,9 @@
+{
+  "name": "darby",
+  "version": "0.1.0",
+  "description": "Connect Claude Code to the darby remote MCP server and use its tools",
+  "author": {
+    "name": "darby maintainers"
+  },
+  "license": "Apache-2.0"
+}
