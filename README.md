@@ -11,7 +11,7 @@ In Claude Code:
 1. Add the marketplace:
 
    ```text
-   /plugin marketplace add localbridge-oss/darby-plugins
+   /plugin marketplace add darby-ai/darby-plugins
    ```
 
 2. Install the plugin:
@@ -27,7 +27,7 @@ In Claude Code:
 The same steps from a shell:
 
 ```bash
-claude plugin marketplace add localbridge-oss/darby-plugins
+claude plugin marketplace add darby-ai/darby-plugins
 claude plugin install darby@darby-plugins
 ```
 
